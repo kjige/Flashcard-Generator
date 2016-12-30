@@ -1,3 +1,4 @@
+var fs = require("fs");
 var inquirer = require('inquirer');
 var basic = require('./basic.js');
 var cards = require('./cards.js');
@@ -8,15 +9,14 @@ inquirer.prompt([{
     message: 'what type of card?',
     choices: ['basic', 'cloze']
 }]).then(function (resp) {
-    // console.log('The type is ' + resp.type);
     if (resp.type === 'basic') {
-        BasicCardPrompt();
+        basicCardPrompt();
     } else if (resp.type === 'cloze') {
 
     }
 });
 
-function BasicCardPrompt() {
+function basicCardPrompt() {
     inquirer.prompt([{
         name: 'front',
         message: 'what does the front say?',
@@ -26,7 +26,12 @@ function BasicCardPrompt() {
         message: 'what does the back say?',
         type: 'input'
     }]).then(function (resp) {
-        var newBasicFlashcard = new basic(resp.front, resp.back);
-        console.log(newBasicFlashcard);
+        var newBasic = new basic(resp.front, resp.back);
+        addBasicCard(newBasic);
     });
+}
+
+function addBasicCard(newBasic) {
+    var card = "\n" + newBasic.front + "," + newBasic.back;
+    fs.appendFile('basic.txt', card);
 }

@@ -1,5 +1,5 @@
 var cards = {
-    basic: {},
+    basic: [],
     cloze: {}
 };
 module.exports = cards;
