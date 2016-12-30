@@ -1,23 +1,31 @@
 var inquirer = require('inquirer');
+var basic = require('./basic.js');
+var cards = require('./cards.js');
 
-function BasicFlashcard(name, front, back) {
-    this.name = name;
-    this.front = front;
-    this.back = back;
-}
+inquirer.prompt([{
+    name: 'type',
+    type: 'list',
+    message: 'what type of card?',
+    choices: ['basic', 'cloze']
+}]).then(function (resp) {
+    // console.log('The type is ' + resp.type);
+    if (resp.type === 'basic') {
+        // console.log(resp.type + '222');
+        var newBasicFlashcard = new basic('fruit', 'apple', 'orange');
+        console.log(newBasicFlashcard);
+    } else if (resp.type === 'cloze') {
 
-function ClozeFlashcard(name, text, cloze) {
-    this.name = name;
-    this.text = text;
-    this.cloze = cloze;
-
-    function displayText() {
-        console.log(this.text);
     }
+});
+
+function BasicCardPrompt() {
+    inquirer.prompt([{
+        name: 'front',
+        message: 'what does the front say?',
+        type: 'input'
+    }, {
+        name: 'back',
+        message: 'what does the back say?',
+        type: 'input'
+    }]);
 }
-
-// var basic1 = new BasicFlashcard('basic1', 'apple', 'orange');
-// console.log(basic1);
-
-// var cloze1 = new ClozeFlashcard('cloze1', 'black', 'white');
-// console.log(cloze1);
