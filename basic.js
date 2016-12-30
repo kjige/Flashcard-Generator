@@ -1,5 +1,4 @@
-var BasicFlashcard = function (name, front, back) {
-    this.name = name;
+var BasicFlashcard = function (front, back) {
     this.front = front;
     this.back = back;
 

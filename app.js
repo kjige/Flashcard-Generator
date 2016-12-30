@@ -10,9 +10,7 @@ inquirer.prompt([{
 }]).then(function (resp) {
     // console.log('The type is ' + resp.type);
     if (resp.type === 'basic') {
-        // console.log(resp.type + '222');
-        var newBasicFlashcard = new basic('fruit', 'apple', 'orange');
-        console.log(newBasicFlashcard);
+        BasicCardPrompt();
     } else if (resp.type === 'cloze') {
 
     }
@@ -27,5 +25,8 @@ function BasicCardPrompt() {
         name: 'back',
         message: 'what does the back say?',
         type: 'input'
-    }]);
+    }]).then(function (resp) {
+        var newBasicFlashcard = new basic(resp.front, resp.back);
+        console.log(newBasicFlashcard);
+    });
 }
