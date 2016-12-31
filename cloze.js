@@ -13,4 +13,6 @@ var ClozeFlashcard = function (text, cloze) {
     this.displayAll = function () {
         console.log('Text: ' + this.text + ', ' + 'Cloze-deleted: ' + this.cloze);
     };
-}
+};
+
+module.exports = ClozeFlashcard;

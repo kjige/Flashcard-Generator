@@ -10,12 +10,22 @@ Put questions, clues, or other hints on the "front", and the answers on the "bac
 Cards are stored in separate text files for basic or cloze-deleted statements.
 
 ## Displaying cards 
-Display "front" (question), "back" (answer), or both. Example:
+Display "front" (question), "back" (answer), or both. 
+
+Basic card example:
 ```js
 	var newCard = new BasicFlashcard (front, back);
 	BasicFlashcard.displayFront();
 	BasicFlashcard.displayBack();
 	BasicFlashcard.displayAll();
+```
+
+Cloze-deleted example:
+```js
+	var newCard = new ClozeFlashcard (front, back);
+	ClozeFlashcard.displayText();
+	ClozeFlashcard.displayCloze();
+	ClozeFlashcard.displayAll();
 ```
 
 ## Storage

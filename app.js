@@ -1,6 +1,7 @@
 var fs = require("fs");
 var inquirer = require('inquirer');
 var basic = require('./basic.js');
+var cloze = require('./cloze.js');
 
 inquirer.prompt([{
     name: 'activity',
