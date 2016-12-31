@@ -1,20 +1,34 @@
 var fs = require("fs");
 var inquirer = require('inquirer');
 var basic = require('./basic.js');
-var cards = require('./cards.js');
 
 inquirer.prompt([{
-    name: 'type',
+    name: 'activity',
+    message: 'make card or view cards?',
     type: 'list',
-    message: 'what type of card?',
-    choices: ['basic', 'cloze']
+    choices: ['make', 'view']
 }]).then(function (resp) {
-    if (resp.type === 'basic') {
-        basicCardPrompt();
-    } else if (resp.type === 'cloze') {
-
+    if (resp.activity === 'make') {
+        makeCard();
+    } else if (resp.activity === 'view') {
+        viewCards();
     }
 });
+
+function makeCard() {
+    inquirer.prompt([{
+        name: 'type',
+        type: 'list',
+        message: 'what type of card?',
+        choices: ['basic', 'cloze']
+    }]).then(function (resp) {
+        if (resp.type === 'basic') {
+            basicCardPrompt();
+        } else if (resp.type === 'cloze') {
+
+        }
+    });
+}
 
 function basicCardPrompt() {
     inquirer.prompt([{
@@ -34,4 +48,15 @@ function basicCardPrompt() {
 function addBasicCard(newBasic) {
     var card = "\n" + newBasic.front + "," + newBasic.back;
     fs.appendFile('basic.txt', card);
+}
+
+function viewCards() {
+    fs.readFile('basic.txt', 'utf8', function (err, data) {
+        var cardArray = data.split('\n');
+        cardArray.forEach(function (card) {
+            var cardSplit = card.split(',');
+            var newBasicCard = new basic(cardSplit[0], cardSplit[1]);
+            newBasicCard.displayAll();
+        });
+    });
 }
