@@ -7,12 +7,14 @@ inquirer.prompt([{
     name: 'activity',
     message: 'make card or view cards?',
     type: 'list',
-    choices: ['make', 'view']
+    choices: ['make', 'view basic', 'view cloze']
 }]).then(function (resp) {
     if (resp.activity === 'make') {
         makeCard();
-    } else if (resp.activity === 'view') {
-        viewCards();
+    } else if (resp.activity === 'view basic') {
+        viewBasic();
+    } else if (resp.activity === 'view cloze') {
+        viewCloze();
     }
 });
 
@@ -47,7 +49,7 @@ function makeBasicCard() {
 }
 
 function addBasicCard(newBasic) {
-    var card = newBasic.front + "," + newBasic.back + "\n";
+    var card = '\n' + newBasic.front + ',' + newBasic.back;
     fs.appendFile('basic.txt', card);
 }
 
@@ -67,17 +69,28 @@ function makeClozeCard() {
 }
 
 function addClozeCard(newCloze) {
-    var card = newCloze.text + "," + newCloze.cloze + "\n";
+    var card = '\n' + newCloze.text + ',' + newCloze.cloze;
     fs.appendFile('cloze.txt', card);
 }
 
-function viewCards() {
+function viewBasic() {
     fs.readFile('basic.txt', 'utf8', function (err, data) {
         var cardArray = data.split('\n');
         cardArray.forEach(function (card) {
             var cardSplit = card.split(',');
             var newBasicCard = new basic(cardSplit[0], cardSplit[1]);
             newBasicCard.displayAll();
+        });
+    });
+}
+
+function viewCloze() {
+    fs.readFile('cloze.txt', 'utf8', function (err, data) {
+        var cardArray = data.split('\n');
+        cardArray.forEach(function (card) {
+            var cardSplit = card.split(',');
+            var newClozeCard = new cloze(cardSplit[0], cardSplit[1]);
+            newClozeCard.displayAll();
         });
     });
 }

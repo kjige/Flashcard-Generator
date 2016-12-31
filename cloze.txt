@@ -1,2 +1,4 @@
 <> is a guy.,Chris
 <> is tasty.,Steak
+<> is President.,Obama
+<> is green.,Grass

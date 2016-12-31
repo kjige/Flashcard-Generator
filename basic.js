@@ -11,7 +11,7 @@ var BasicFlashcard = function (front, back) {
     };
 
     this.displayAll = function () {
-        console.log('Front: ' + this.front + ', ' + 'Back: ' + this.back + '\n');
+        console.log('Front: ' + this.front + ', ' + 'Back: ' + this.back);
     };
 };
 
