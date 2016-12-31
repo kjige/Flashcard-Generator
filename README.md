@@ -1,13 +1,16 @@
 # Flashcard-Generator
 
 ## Make flash cards
+Cards are constructor objects and exported as modules. 
 To make new cards, select 'make'.
 
-## Choose between basic or cloze-deleted statements
+## Types of flash cards
+Choose between basic or cloze-deleted statements.
 Put questions, clues, or other hints on the "front", and the answers on the "back".
+Cards are stored in separate text files for basic or cloze-deleted statements.
 
-## Display "front" (question), "back" (answer), or both. Example:
-Cards are constructor objects and exported as modules. 
+## Displaying cards 
+Display "front" (question), "back" (answer), or both. Example:
 ```js
 	var newCard = new BasicFlashcard (front, back);
 	BasicFlashcard.displayFront();
@@ -15,6 +18,6 @@ Cards are constructor objects and exported as modules.
 	BasicFlashcard.displayAll();
 ```
 
-## Cards are stored in separate text files for basic or cloze-deleted statements.
+## Storage
 Enables users to retrieve stored cards.
 To view all cards, select 'view'.
