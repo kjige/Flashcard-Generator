@@ -7,11 +7,11 @@ var ClozeFlashcard = function (text, cloze) {
     };
 
     this.displayCloze = function () {
-        console.log('Cloze-deleted: ' + this.cloze);
+        console.log('Cloze: ' + this.cloze);
     };
 
     this.displayAll = function () {
-        console.log('Text: ' + this.text + ', ' + 'Cloze-deleted: ' + this.cloze);
+        console.log('Text: ' + this.text + ', ' + 'Cloze: ' + this.cloze);
     };
 };
 

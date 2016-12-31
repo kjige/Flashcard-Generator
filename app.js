@@ -24,14 +24,14 @@ function makeCard() {
         choices: ['basic', 'cloze']
     }]).then(function (resp) {
         if (resp.type === 'basic') {
-            basicCardPrompt();
+            makeBasicCard();
         } else if (resp.type === 'cloze') {
-
+            makeClozeCard();
         }
     });
 }
 
-function basicCardPrompt() {
+function makeBasicCard() {
     inquirer.prompt([{
         name: 'front',
         message: 'what does the front say?',
@@ -47,8 +47,28 @@ function basicCardPrompt() {
 }
 
 function addBasicCard(newBasic) {
-    var card = "\n" + newBasic.front + "," + newBasic.back;
+    var card = newBasic.front + "," + newBasic.back + "\n";
     fs.appendFile('basic.txt', card);
+}
+
+function makeClozeCard() {
+    inquirer.prompt([{
+        name: 'text',
+        message: 'what is the cloze-deleted text?',
+        type: 'input'
+    }, {
+        name: 'cloze',
+        message: 'what is the cloze text',
+        type: 'input'
+    }]).then(function (resp) {
+        var newCloze = new cloze(resp.text, resp.cloze);
+        addClozeCard(newCloze);
+    });
+}
+
+function addClozeCard(newCloze) {
+    var card = newCloze.text + "," + newCloze.cloze + "\n";
+    fs.appendFile('cloze.txt', card);
 }
 
 function viewCards() {
